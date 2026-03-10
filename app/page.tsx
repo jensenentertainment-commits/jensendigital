@@ -56,18 +56,13 @@ export default function Page() {
 
             <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-3">
               <a
-                href="mailto:post@jensendigital.no"
+                href="/systemsentralen"
                 className="inline-flex min-w-[168px] items-center justify-center rounded-full border border-white/12 bg-white/[0.04] px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-white/78 transition hover:border-white/18 hover:bg-white/[0.06] hover:text-white"
               >
-                Contact
+                ENTER
               </a>
 
-              <Link
-                href="/systemsentralen"
-                className="inline-flex min-w-[168px] items-center justify-center rounded-full border border-white/6 px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-white/36 transition hover:border-white/12 hover:text-white/62"
-              >
-                Enter
-              </Link>
+             
             </div>
           </div>
         </section>
