@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Jensen Digital",
-  description: "Jensen Digital/Systemsentralen",
+  description: "Jensen Digital",
 };
 
 export default function RootLayout({

@@ -22,50 +22,76 @@ const TAB_STATUS = [
 ] as const;
 
 export default function Page() {
-  const local = [
-    {
-      name: "Lumeris",
-      href: "/lumeris",
-      dot: "#93c5fd",
-      meta: "Digital ambience",
-      live: true,
-    },
+  const featured = {
+    name: "Lumeris",
+    href: "/lumeris",
+    dot: "#93c5fd",
+    meta: "Et levende ambient-felt med lys, bevegelse og lyd.",
+    label: "Featured",
+    live: true,
+  } as const;
+
+  const internal = [
     {
       name: "Elephant Records",
       href: "/elephant",
       dot: "#f472b6",
-      meta: "Katalog og transmission",
+      meta: "Katalog, transmission og intern identitet.",
       live: false,
     },
+
+    {
+    name: "Beslutningsstøtte",
+    href: "/beslutning",
+    dot: "#64f595",
+    meta: "For spørsmål som ikke blir bedre av mer tenking",
+    live: true,
+  },
+  
+  {
+  name: "Systemmelding",
+  href: "/systemmelding",
+  dot: "#cbd5e1",
+  meta: "Løpende status for forhold som ikke nødvendigvis angår deg",
+  live: true,
+},
+
+{
+  name: "Intern status",
+  href: "/intern-status",
+  dot: "#a78bfa",
+  meta: "Løpende vurdering av forhold som allerede er i drift",
+  live: true,
+},
   ] as const;
 
-  const external = [
+  const projects = [
     {
       name: "Phorium",
       href: "https://phorium.no",
-      dot: "#22c55e",
-      meta: "Tekstkontroll",
+      dot: "#1A4242",
+      meta: "Tekstkontroll før publisering.",
       external: true,
     },
     {
       name: "Nowheremap",
       href: "https://nowheremap.com",
-      dot: "#cbd5e1",
-      meta: "Autonom struktur",
+      dot: "#688fbe",
+      meta: "Et autonomt kartverk over steder som ikke finnes.",
       external: true,
     },
     {
       name: "Prishandel.no",
       href: "https://prishandel.no",
-      dot: "#60a5fa",
-      meta: "Eksternt prosjekt",
+      dot: "#f82b2b",
+      meta: "Satirisk nettbutikk bygget som et system.",
       external: true,
     },
     {
       name: "Turforventning.no",
       href: "https://turforventning.no",
       dot: "#94a3b8",
-      meta: "Eksternt prosjekt",
+      meta: "Et system for å håndtere forventningen om tur.",
       external: true,
     },
   ] as const;
@@ -147,7 +173,7 @@ export default function Page() {
 
       <div className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay bg-[url('data:image/svg+xml,%3Csvg viewBox=%270%200%20400%20400%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E')]" />
 
-      <div className="relative mx-auto max-w-4xl px-5 py-10 sm:px-6 sm:py-14">
+      <div className="relative mx-auto max-w-5xl px-5 py-10 sm:px-6 sm:py-14">
         <header className="pb-10 sm:pb-12">
           <Link
             href="/"
@@ -159,19 +185,35 @@ export default function Page() {
           </Link>
 
           <div className="mt-5 text-[11px] uppercase tracking-[0.28em] text-white/24">
-            Sentralen
+            SystemSentralen
           </div>
 
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-white/40">
-            Systemer, arbeid og forbindelser.
+          <h1 className="mt-4 max-w-3xl text-3xl font-medium tracking-[-0.04em] text-white/92 sm:text-5xl">
+            En kuratert inngang til systemer, eksperimenter og digitale verk.
+          </h1>
+
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/44 sm:text-base">
+            Dette er navet for prosjekter jeg bygger selv: ambiente systemer,
+            satiriske nettsteder, verktøy og pågående eksperimenter.
           </p>
 
           <div className="mt-8 h-px w-full bg-white/6" />
         </header>
 
-        <Section title="Lokalt">
+        <Section title="Anbefalt start">
+          <FeatureRow
+            href={featured.href}
+            dot={featured.dot}
+            name={featured.name}
+            meta={featured.meta}
+            label={featured.label}
+            live={featured.live}
+          />
+        </Section>
+
+        <Section title="Interne systemer">
           <div className="space-y-3 sm:space-y-4">
-            {local.map((item) => (
+            {internal.map((item) => (
               <Row
                 key={item.name}
                 href={item.href}
@@ -184,9 +226,9 @@ export default function Page() {
           </div>
         </Section>
 
-        <Section title="Eksternt">
+        <Section title="Prosjekter">
           <div className="space-y-3 sm:space-y-4">
-            {external.map((item) => (
+            {projects.map((item) => (
               <Row
                 key={item.name}
                 href={item.href}
@@ -200,7 +242,7 @@ export default function Page() {
         </Section>
 
         <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-white/32">
-          <span>Enkelte moduler er ikke navigert offentlig.</span>
+          <span>Noen moduler er fortsatt interne eller under utvikling.</span>
           <a
             href="/internt/oppslagstavle"
             className="rounded-full border border-white/10 px-3 py-1 text-white/46 transition hover:border-white/16 hover:text-white/70"
@@ -212,7 +254,7 @@ export default function Page() {
 
         <footer className="mt-14 border-t border-white/10 pt-6">
           <div className="text-xs text-white/30">
-            Et nav for tilgang og oversikt.
+            Personlig side for utvalgte verk, systemer og forbindelser.
           </div>
 
           <div className="mt-3 text-[11px] text-white/24">
@@ -264,6 +306,56 @@ function Section({
       </div>
       {children}
     </section>
+  );
+}
+
+function FeatureRow({
+  href,
+  dot,
+  name,
+  meta,
+  label,
+  live,
+}: {
+  href: string;
+  dot: string;
+  name: string;
+  meta: string;
+  label: string;
+  live?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      className="group block rounded-[24px] border border-white/8 bg-white/[0.05] px-5 py-5 transition-all duration-200 hover:translate-y-[-2px] hover:border-white/14 hover:bg-white/[0.08] sm:px-6 sm:py-6"
+      style={{
+        textDecoration: "none",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
+      }}
+    >
+      <div className="mb-3 inline-flex rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/44">
+        {label}
+      </div>
+
+      <div className="flex items-center justify-between gap-4">
+        <div className="min-w-0">
+          <div className="flex items-center gap-3">
+            <Dot color={dot} live={live} />
+            <div className="truncate text-base font-medium text-white/92 sm:text-lg">
+              {name}
+            </div>
+          </div>
+
+          <div className="mt-2 max-w-2xl pl-[22px] text-sm leading-relaxed text-white/42">
+            {meta}
+          </div>
+        </div>
+
+        <div className="ml-4 shrink-0 text-sm text-white/24 transition group-hover:translate-x-0.5 group-hover:text-white/44">
+          →
+        </div>
+      </div>
+    </a>
   );
 }
 
